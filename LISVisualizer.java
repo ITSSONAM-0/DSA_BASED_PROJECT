@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-// Add these two specific imports 👇
+
 import javax.swing.Timer;
 import java.util.List;
 
@@ -11,13 +11,13 @@ public class LISVisualizer extends JFrame implements ActionListener {
     private JTextField inputField;
     private JTextArea outputArea;
     private JButton startButton, randomButton;
-    private Timer timer; // <-- now clearly Swing Timer
+    private Timer timer; 
     private int i, j;
     private int[] arr, dp, prev;
     private StringBuilder steps;
 
     public LISVisualizer() {
-        setTitle("🎯 LIS Visualizer - Dynamic Programming in Action");
+        setTitle(" LIS Visualizer - Dynamic Programming in Action");
         setSize(700, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
@@ -32,7 +32,7 @@ public class LISVisualizer extends JFrame implements ActionListener {
 
         startButton = new JButton("▶ Start Visualization");
         startButton.addActionListener(this);
-        randomButton = new JButton("🎲 Random Numbers");
+        randomButton = new JButton(" Random Numbers");
         randomButton.addActionListener(this);
 
         JPanel topPanel = new JPanel(new GridLayout(3, 1, 5, 5));
@@ -71,7 +71,7 @@ public class LISVisualizer extends JFrame implements ActionListener {
                 arr = Arrays.stream(parts).mapToInt(Integer::parseInt).toArray();
                 startVisualization();
             } catch (Exception ex) {
-                outputArea.setText("⚠️ Please enter valid numbers!");
+                outputArea.setText(" Please enter valid numbers!");
             }
         }
     }
@@ -100,9 +100,9 @@ public class LISVisualizer extends JFrame implements ActionListener {
                 if (arr[i] > arr[j] && dp[i] < dp[j] + 1) {
                     dp[i] = dp[j] + 1;
                     prev[i] = j;
-                    steps.append("✅ Updated dp[" + i + "] = " + dp[i] + "\n");
+                    steps.append("Updated dp[" + i + "] = " + dp[i] + "\n");
                 } else {
-                    steps.append("❌ No update\n");
+                    steps.append(" No update\n");
                 }
                 j++;
             } else {
@@ -136,11 +136,11 @@ public class LISVisualizer extends JFrame implements ActionListener {
         }
         Collections.reverse(lis);
 
-        steps.append("\n✨ Final LIS: " + lis + " (Length = " + lis.size() + ")\n");
+        steps.append("\n Final LIS: " + lis + " (Length = " + lis.size() + ")\n");
         outputArea.setText("Array: " + Arrays.toString(arr) + "\n\n");
         outputArea.append("DP Table: " + Arrays.toString(dp) + "\n\n");
         outputArea.append("Steps:\n" + steps.toString());
-        outputArea.append("\n🎉 Visualization Complete!");
+        outputArea.append("\n Visualization Complete!");
     }
 
     public static void main(String[] args) {
