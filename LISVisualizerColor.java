@@ -20,7 +20,7 @@ public class LISVisualizerColor extends JFrame implements ActionListener {
     private final int DELAY = 800;
 
     public LISVisualizerColor() {
-        setTitle("🎨 LIS Visualizer (Dynamic Programming Animation)");
+        setTitle(" LIS Visualizer (Dynamic Programming Animation)");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
@@ -36,7 +36,7 @@ public class LISVisualizerColor extends JFrame implements ActionListener {
         startButton = new JButton("▶ Start Visualization");
         startButton.addActionListener(this);
 
-        randomButton = new JButton("🎲 Random");
+        randomButton = new JButton(" Random");
         randomButton.addActionListener(this);
 
         JPanel topPanel = new JPanel(new GridLayout(3, 1, 5, 5));
@@ -58,7 +58,7 @@ public class LISVisualizerColor extends JFrame implements ActionListener {
                 for (int k = 0; k < arr.length; k++) {
                     Color color = Color.LIGHT_GRAY;
                     if (i < arr.length && k == i)
-                        color = Color.BLUE; // current i
+                        color = Color.BLUE; 
                     if (i < arr.length && j < i && k == j)
                         color = Color.ORANGE; // comparing j
                     g.setColor(color);
@@ -76,7 +76,7 @@ public class LISVisualizerColor extends JFrame implements ActionListener {
         stepsArea = new JTextArea();
         stepsArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         stepsArea.setEditable(false);
-        stepsArea.setBorder(BorderFactory.createTitledBorder("🧠 DP Steps"));
+        stepsArea.setBorder(BorderFactory.createTitledBorder(" DP Steps"));
 
         add(topPanel, BorderLayout.NORTH);
         add(arrayPanel, BorderLayout.CENTER);
@@ -99,7 +99,7 @@ public class LISVisualizerColor extends JFrame implements ActionListener {
                 arr = Arrays.stream(parts).mapToInt(Integer::parseInt).toArray();
                 startVisualization();
             } catch (Exception ex) {
-                stepsArea.setText("⚠️ Please enter valid numbers!");
+                stepsArea.setText(" Please enter valid numbers!");
             }
         }
     }
@@ -129,9 +129,9 @@ public class LISVisualizerColor extends JFrame implements ActionListener {
                 if (arr[i] > arr[j] && dp[i] < dp[j] + 1) {
                     dp[i] = dp[j] + 1;
                     prev[i] = j;
-                    stepLog.append("✅ Updated dp[" + i + "] = " + dp[i] + "\n");
+                    stepLog.append(" Updated dp[" + i + "] = " + dp[i] + "\n");
                 } else {
-                    stepLog.append("❌ No update\n");
+                    stepLog.append(" No update\n");
                 }
                 j++;
             } else {
@@ -161,7 +161,7 @@ public class LISVisualizerColor extends JFrame implements ActionListener {
         }
         Collections.reverse(lis);
 
-        stepLog.append("\n✨ Final LIS: " + lis + " (Length = " + lis.size() + ")\n🎉 Visualization Complete!");
+        stepLog.append("\n Final LIS: " + lis + " (Length = " + lis.size() + ")\n🎉 Visualization Complete!");
         stepsArea.setText(stepLog.toString());
         arrayPanel.repaint();
     }
