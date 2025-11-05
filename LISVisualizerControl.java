@@ -22,7 +22,7 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
     private boolean isPaused = false;
 
     public LISVisualizerControl() {
-        setTitle("🎨 LIS Visualizer (Dynamic Programming Control Panel)");
+        setTitle(" LIS Visualizer (Dynamic Programming Control Panel)");
         setSize(900, 650);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
@@ -37,14 +37,14 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
 
         startButton = new JButton("▶ Start");
         startButton.addActionListener(this);
-        randomButton = new JButton("🎲 Random");
+        randomButton = new JButton(" Random");
         randomButton.addActionListener(this);
 
         pauseButton = new JButton("⏸ Pause");
         pauseButton.addActionListener(this);
-        resumeButton = new JButton("▶ Resume");
+        resumeButton = new JButton(" Resume");
         resumeButton.addActionListener(this);
-        restartButton = new JButton("🔁 Restart");
+        restartButton = new JButton(" Restart");
         restartButton.addActionListener(this);
 
         // top section layout
@@ -70,11 +70,11 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
                 for (int k = 0; k < arr.length; k++) {
                     Color color = Color.LIGHT_GRAY;
                     if (lisIndices.contains(k))
-                        color = new Color(80, 200, 120); // Green for LIS
+                        color = new Color(80, 200, 120);
                     else if (i < arr.length && k == i)
-                        color = new Color(90, 150, 255); // Blue for current i
+                        color = new Color(90, 150, 255); 
                     else if (i < arr.length && j < i && k == j)
-                        color = new Color(255, 160, 70); // Orange for comparing j
+                        color = new Color(255, 160, 70);
 
                     g.setColor(color);
                     g.fillRoundRect(50 + k * (BOX_SIZE + 10), 50, BOX_SIZE, BOX_SIZE, 15, 15);
@@ -91,7 +91,7 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
         stepsArea = new JTextArea();
         stepsArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         stepsArea.setEditable(false);
-        stepsArea.setBorder(BorderFactory.createTitledBorder("🧠 DP Steps"));
+        stepsArea.setBorder(BorderFactory.createTitledBorder(" DP Steps"));
 
         add(topPanel, BorderLayout.NORTH);
         add(arrayPanel, BorderLayout.CENTER);
@@ -115,7 +115,7 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
                 arr = Arrays.stream(parts).mapToInt(Integer::parseInt).toArray();
                 startVisualization();
             } catch (Exception ex) {
-                stepsArea.setText("⚠️ Please enter valid numbers!");
+                stepsArea.setText(" Please enter valid numbers!");
             }
         } else if (src == pauseButton) {
             if (timer != null && timer.isRunning()) {
@@ -146,7 +146,7 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
         i = 1;
         j = 0;
         stepLog.setLength(0);
-        stepsArea.setText("🚀 Starting LIS Visualization...\n");
+        stepsArea.setText(" Starting LIS Visualization...\n");
         repaint();
 
         timer = new Timer(DELAY, e -> visualizeStep());
@@ -160,9 +160,9 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
                 if (arr[i] > arr[j] && dp[i] < dp[j] + 1) {
                     dp[i] = dp[j] + 1;
                     prev[i] = j;
-                    stepLog.append("✅ Updated dp[" + i + "] = " + dp[i] + "\n");
+                    stepLog.append(" Updated dp[" + i + "] = " + dp[i] + "\n");
                 } else {
-                    stepLog.append("❌ No update\n");
+                    stepLog.append(" No update\n");
                 }
                 j++;
             } else {
@@ -215,7 +215,7 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
             }
         }).start();
 
-        stepLog.append("\n✨ Final LIS: " + lis + " (Length = " + lis.size() + ")\n🎉 Visualization Complete!");
+        stepLog.append("\n Final LIS: " + lis + " (Length = " + lis.size() + ")\n🎉 Visualization Complete!");
         stepsArea.setText(stepLog.toString());
         arrayPanel.repaint();
     }
