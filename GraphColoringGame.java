@@ -8,7 +8,7 @@ public class GraphColoringGame extends JFrame {
     private final Color[] COLORS = { Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW };
     private ArrayList<Integer>[] graph;
     private Point[] nodePositions;
-    private int[] nodeColors; // -1 = uncolored
+    private int[] nodeColors; 
     private int numNodes;
 
     public GraphColoringGame() {
@@ -37,9 +37,9 @@ public class GraphColoringGame extends JFrame {
     @SuppressWarnings("unchecked")
     private void initializeGraph() {
         numNodes = 6;
-        graph = new ArrayList[numNodes]; // generic array, suppress warning
+        graph = new ArrayList[numNodes]; 
         nodeColors = new int[numNodes];
-        Arrays.fill(nodeColors, -1); // uncolored
+        Arrays.fill(nodeColors, -1);
 
         nodePositions = new Point[numNodes];
         nodePositions[0] = new Point(100, 100);
@@ -52,7 +52,6 @@ public class GraphColoringGame extends JFrame {
         for (int i = 0; i < numNodes; i++)
             graph[i] = new ArrayList<>();
 
-        // Define edges
         addEdge(0, 1);
         addEdge(1, 2);
         addEdge(0, 3);
@@ -101,7 +100,7 @@ public class GraphColoringGame extends JFrame {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(Color.BLACK);
-            // Draw edges
+            
             for (int u = 0; u < numNodes; u++) {
                 for (int v : graph[u]) {
                     if (u < v) {
@@ -112,7 +111,7 @@ public class GraphColoringGame extends JFrame {
                 }
             }
 
-            // Draw nodes
+           
             for (int i = 0; i < numNodes; i++) {
                 Point p = nodePositions[i];
                 if (nodeColors[i] == -1)
