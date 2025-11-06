@@ -18,7 +18,7 @@ class HuffmanNode implements Comparable<HuffmanNode> {
 
 public class FileCompression {
 
-    // Build Huffman Tree
+   
     public static HuffmanNode buildTree(Map<Character, Integer> freqMap) {
         PriorityQueue<HuffmanNode> pq = new PriorityQueue<>();
         for (Map.Entry<Character, Integer> entry : freqMap.entrySet()) {
@@ -37,7 +37,7 @@ public class FileCompression {
         return pq.poll();
     }
 
-    // Generate Huffman Codes
+   
     public static void generateCodes(HuffmanNode root, String code, Map<Character, String> huffmanCode) {
         if (root == null) return;
         if (root.left == null && root.right == null) {
@@ -51,22 +51,21 @@ public class FileCompression {
         String inputFile = "input.txt";
         String text = new String(Files.readAllBytes(new File(inputFile).toPath()));
 
-        // Count frequency
+        
         Map<Character, Integer> freqMap = new HashMap<>();
         for (char c : text.toCharArray()) {
             freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
         }
 
-        // Build Huffman Tree
+        
         HuffmanNode root = buildTree(freqMap);
 
-        // Generate Codes
         Map<Character, String> huffmanCode = new HashMap<>();
         generateCodes(root, "", huffmanCode);
 
         System.out.println("Huffman Codes: " + huffmanCode);
 
-        // Encode the text
+       
         StringBuilder sb = new StringBuilder();
         for (char c : text.toCharArray()) {
             sb.append(huffmanCode.get(c));
@@ -74,7 +73,7 @@ public class FileCompression {
 
         System.out.println("Encoded text: " + sb);
 
-        // Optionally, save encoded text to a file
+       
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("encoded.txt"))) {
             writer.write(sb.toString());
         }
