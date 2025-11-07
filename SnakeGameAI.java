@@ -14,9 +14,9 @@ public class SnakeGameAI extends JPanel implements ActionListener {
     private final LinkedList<Point> aiSnake = new LinkedList<>();
     private Point food;
 
-    private char direction = 'R'; // Player snake initial direction
+    private char direction = 'R'; 
     private boolean running = false;
-    private javax.swing.Timer timer; // Use Swing Timer explicitly
+    private javax.swing.Timer timer; 
     private Random random;
     private int score = 0;
 
@@ -36,7 +36,7 @@ public class SnakeGameAI extends JPanel implements ActionListener {
         aiSnake.add(new Point(UNIT_SIZE * 25, UNIT_SIZE * 25));
         spawnFood();
         running = true;
-        timer = new javax.swing.Timer(DELAY, this); // Swing Timer
+        timer = new javax.swing.Timer(DELAY, this); 
         timer.start();
     }
 
@@ -54,23 +54,23 @@ public class SnakeGameAI extends JPanel implements ActionListener {
 
     public void draw(Graphics g) {
         if (running) {
-            // Draw food
+            
             g.setColor(Color.RED);
             g.fillOval(food.x, food.y, UNIT_SIZE, UNIT_SIZE);
 
-            // Draw player snake
+            
             g.setColor(Color.GREEN);
             for (Point p : playerSnake) {
                 g.fillRect(p.x, p.y, UNIT_SIZE, UNIT_SIZE);
             }
 
-            // Draw AI snake
+           
             g.setColor(Color.CYAN);
             for (Point p : aiSnake) {
                 g.fillRect(p.x, p.y, UNIT_SIZE, UNIT_SIZE);
             }
 
-            // Score
+            
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial", Font.BOLD, 18));
             g.drawString("Score: " + score, 10, 20);
@@ -81,7 +81,7 @@ public class SnakeGameAI extends JPanel implements ActionListener {
     }
 
     private void move() {
-        // Move player snake
+        
         Point head = new Point(playerSnake.getFirst());
         switch (direction) {
             case 'U':
@@ -106,7 +106,7 @@ public class SnakeGameAI extends JPanel implements ActionListener {
             playerSnake.removeLast();
         }
 
-        // Move AI snake using BFS pathfinding
+        
         Point aiHead = aiSnake.getFirst();
         Point nextMove = getNextMoveAI(aiHead, food);
         if (nextMove != null) {
@@ -115,7 +115,7 @@ public class SnakeGameAI extends JPanel implements ActionListener {
         }
     }
 
-    // Simple BFS to find next move toward food
+   
     private Point getNextMoveAI(Point start, Point target) {
         int rows = HEIGHT / UNIT_SIZE;
         int cols = WIDTH / UNIT_SIZE;
@@ -151,7 +151,7 @@ public class SnakeGameAI extends JPanel implements ActionListener {
             }
         }
 
-        // Trace back path
+       
         Point step = target;
         if (parent[step.y / UNIT_SIZE][step.x / UNIT_SIZE] == null)
             return null; // no path
@@ -169,7 +169,7 @@ public class SnakeGameAI extends JPanel implements ActionListener {
             if (head.equals(playerSnake.get(i)))
                 running = false;
 
-        // AI collisions
+        
         Point aiHead = aiSnake.getFirst();
         if (aiHead.x < 0 || aiHead.x >= WIDTH || aiHead.y < 0 || aiHead.y >= HEIGHT)
             running = false;
