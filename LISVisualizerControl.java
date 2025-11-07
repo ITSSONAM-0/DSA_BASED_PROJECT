@@ -47,7 +47,7 @@ public class LISVisualizerControl extends JFrame implements ActionListener {
         restartButton = new JButton(" Restart");
         restartButton.addActionListener(this);
 
-        // top section layout
+        
         JPanel topPanel = new JPanel(new GridLayout(3, 1, 5, 5));
         topPanel.add(title);
         topPanel.add(inputField);
